@@ -1,0 +1,68 @@
+# https://app.quickdatabasediagrams.com
+
+# Relations
+# -     - one TO one
+# -<    - one TO many
+# >-    - many TO one
+# >-<   - many TO many
+# -0    - one TO zero or one
+# 0-    - zero or one TO one
+# 0-0   - zero or one TO zero or one
+# -0<   - one TO zero or many
+# >0-   - zero or many TO one
+
+User
+-
+userID int PK
+name string
+username string UNIQUE
+password string
+role int default=0
+
+PropertyAgent
+-
+propertyAgentID int PK
+userID int FK >- User.userID
+propertyID int FK >- Property.propertyID
+
+#Address
+#-
+#addressID int PK
+#country string
+#county string
+#streetName string
+#houseNumber string
+#postCode string
+
+Property
+-
+propertyID int PK
+#addressID int FK - Address.addressID
+latitude double
+longitude double
+country string
+county string
+streetName string
+houseNumber string
+postCode string
+imageURL string
+
+Floor
+-
+floorID int PK
+propertyID int FK >- Property.propertyID
+level string
+imageURL string
+
+Room
+-
+roomID int PK
+floorID int FK >- Floor.floorID
+pixelsX double
+pixelsY double
+
+360Picture
+-
+360PictureID int PK
+roomID int FK >- Room.roomID
+imageURL string
