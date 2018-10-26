@@ -47,14 +47,12 @@ CREATE TABLE `PropertyAgent` (
 CREATE TABLE `Property` (
     `propertyID` int  NOT NULL ,
     -- addressID int FK - Address.addressID
-    `latitude` double  NOT NULL ,
-    `longitude` double  NOT NULL ,
     `country` string  NOT NULL ,
     `county` string  NOT NULL ,
     `streetName` string  NOT NULL ,
     `houseNumber` string  NOT NULL ,
     `postCode` string  NOT NULL ,
-    `imageURL` string  NOT NULL ,
+    'description' string,
     PRIMARY KEY (
         `propertyID`
     )
@@ -64,7 +62,6 @@ CREATE TABLE `Floor` (
     `floorID` int  NOT NULL ,
     `propertyID` int  NOT NULL ,
     `level` string  NOT NULL ,
-    `imageURL` string  NOT NULL ,
     PRIMARY KEY (
         `floorID`
     )

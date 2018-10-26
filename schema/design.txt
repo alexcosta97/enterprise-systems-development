@@ -38,14 +38,13 @@ Property
 -
 propertyID int PK
 #addressID int FK - Address.addressID
-latitude double
-longitude double
 country string
 county string
 streetName string
 houseNumber string
 postCode string
 imageURL string
+description string
 
 Floor
 -
