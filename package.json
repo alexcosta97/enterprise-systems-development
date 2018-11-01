@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/wopian/enterprise-systems-development/issues"
   },
-  "homepage": "https://github.com/wopian/enterprise-systems-development#readme"
+  "homepage": "https://github.com/wopian/enterprise-systems-development#readme",
+  "dependencies": {
+    "angularcli": "^6.0.1",
+    "express": "^4.16.4",
+    "jest": "^23.6.0"
+  }
 }
