@@ -1,0 +1,22 @@
+{
+  "name": "360-rooms",
+  "version": "0.0.1",
+  "description": "Great property 360 tours for everyone!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wopian/enterprise-systems-development.git"
+  },
+  "author": "James Harris <wopian@wopian.me>",
+  "contributors": [
+    "Alexandre Costa <alex.callum.c@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wopian/enterprise-systems-development/issues"
+  },
+  "homepage": "https://github.com/wopian/enterprise-systems-development#readme"
+}
