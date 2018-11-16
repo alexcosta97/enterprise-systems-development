@@ -1,27 +1,28 @@
 {
   "name": "360-rooms",
   "version": "0.0.1",
-  "description": "Great property 360 tours for everyone!",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wopian/enterprise-systems-development.git"
   },
-  "author": "James Harris <wopian@wopian.me>",
-  "contributors": [
-    "Alexandre Costa <alex.callum.c@gmail.com>"
-  ],
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wopian/enterprise-systems-development/issues"
   },
   "homepage": "https://github.com/wopian/enterprise-systems-development#readme",
   "dependencies": {
-    "angularcli": "^6.0.1",
-    "express": "^4.16.4",
-    "jest": "^23.6.0"
+    "express": "~4.16.4",
+    "express-session": "~1.15.6",
+    "compression": "~1.7.3",
+    "method-override": "~3.0.0",
+    "mongoose": "~5.3.12",
+    "morgan": "~1.9.1",
+    "body-parser": "~1.8.0"
   }
 }
