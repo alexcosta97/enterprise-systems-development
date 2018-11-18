@@ -26,8 +26,8 @@ exports.read = function(req, res){
     res.json(req.user);
 };
 
-exports.userByUsername = function(req, res, next, usernameQuery){
-    User.findOne({username: usernameQuery}, function(err, user){
+exports.userByID = function(req, res, next, id){
+    User.findOne({_id: id}, function(err, user){
         if(err){
             return next(err);
         } else{

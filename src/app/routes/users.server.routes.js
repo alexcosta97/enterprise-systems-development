@@ -5,6 +5,6 @@ module.exports = function(app){
     app.route('/users').post(users.create).get(users.list);
 
     //Creating route to retrieve a single user by username
-    app.route('/users/:username').get(users.read);
-    app.param('username', users.userByUsername);
+    app.route('/users/:userId').get(users.read);
+    app.param('userId', users.userByID);
 }
