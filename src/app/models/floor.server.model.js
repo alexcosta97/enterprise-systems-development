@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var floorSchema = new Schema({
-    propertyID: {
+    property: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Property'
     },

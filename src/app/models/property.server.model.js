@@ -9,7 +9,7 @@ var PropertySchema = new Schema({
     county: String,
     country: String,
     description: String,
-    URL: String,
+    imageURL: String,
     agent: {
         type: Schema.Types.ObjectId,
         ref: 'User'

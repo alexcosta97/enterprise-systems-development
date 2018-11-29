@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var pictureSchema = new Schema({
-    room : {
+    room: {
         type: Schema.Types.ObjectId,
         ref: 'Room'
     },
