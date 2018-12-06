@@ -17,13 +17,12 @@
   },
   "homepage": "https://github.com/wopian/enterprise-systems-development#readme",
   "dependencies": {
+    "body-parser": "~1.8.0",
+    "compression": "~1.7.3",
     "express": "~4.16.4",
     "express-session": "~1.15.6",
-    "compression": "~1.7.3",
     "method-override": "~3.0.0",
     "mongoose": "~5.3.12",
-    "morgan": "~1.9.1",
-    "body-parser": "~1.8.0",
-    "argon2": "~0.20.0"
+    "morgan": "~1.9.1"
   }
 }
