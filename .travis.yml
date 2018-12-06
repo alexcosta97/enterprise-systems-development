@@ -1,0 +1,19 @@
+os:
+- linux
+- osx
+- windows
+dist: xenial
+language: node_js
+node_js: node
+cache: npm
+sudo: false
+matrix:
+  fast_finish: true
+jobs:
+  include
+install:
+- npm ci --prefix api
+- npm ci --prefix client
+script:
+- npm test --prefix api
+- npm test --prefix client
