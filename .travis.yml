@@ -16,4 +16,4 @@ install:
 - npm ci --prefix client
 script:
 - npm test --prefix api
-- npm test --prefix client
+- npm test:ci --prefix client
