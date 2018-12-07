@@ -1,1 +1,5 @@
+*.log
 node_modules
+coverage
+client/cypress/screenshots
+client/cypress/videos
