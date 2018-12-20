@@ -60,7 +60,7 @@ const UserSchema = new Schema({
  }, 'Email cannot be blank');
 
  //Validate empty password
- UserSchema.path('password').validate(function(password){
+UserSchema.path('hashedPassword').validate(function(password){
      if(authTypes.indexOf(this.provider) !== -1) return true;
      return password.length;
  }, 'Password cannot be blank');

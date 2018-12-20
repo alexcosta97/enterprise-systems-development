@@ -9,7 +9,7 @@ const passport = require('@passport-next/passport');
 const mongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 
-module.exports = () => {
+module.exports = function() {
     const app = express();
 
     if(process.env.NODE_ENV === 'development'){

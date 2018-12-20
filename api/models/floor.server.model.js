@@ -7,7 +7,7 @@ var floorSchema = new Schema({
         ref: 'Property'
     },
     level: String,
-    imageURL = String
+    imageURL: String
 });
 
 var Floor = mongoose.model('Floor', floorSchema);

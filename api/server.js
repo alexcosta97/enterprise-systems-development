@@ -1,13 +1,14 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const mongoose = require('./config/mongoose');
-const express = ('./config/express');
-const passport = ('./config/passport');
+const express = require('./config/express');
+let passport = require('./config/passport');
 
 var db = mongoose();
 var app = express();
-var passport = passport();
 app.listen(3000);
+passport = passport();
+
 
 module.exports = app;
 
