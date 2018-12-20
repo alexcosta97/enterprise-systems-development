@@ -40,5 +40,6 @@ const validatePicture = (picture) => {
     return Joi.validate(picture, schema);
 };
 
+//exporting the model and the validation method
 exports.Picture = Picture;
 exports.validate = validatePicture;
