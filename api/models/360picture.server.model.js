@@ -38,4 +38,7 @@ const validatePicture = (picture) => {
 
     //using joi to validate the user input and returns the result
     return Joi.validate(picture, schema);
-}
+};
+
+exports.Picture = Picture;
+exports.validate = validatePicture;

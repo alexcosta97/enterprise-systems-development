@@ -39,5 +39,7 @@ module.exports = function() {
         })
     }));
 
+    //Hooking up the API end points to the express app
+
     return app;
 };
