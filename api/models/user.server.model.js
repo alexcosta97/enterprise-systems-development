@@ -17,6 +17,12 @@ const UserSchema = new Schema({
         match: [/.+\@.+\..+/, "Please fill a valid e-mail address"],
         unique: true
     },
+    phone: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+    },
     hashedPassword: {
         type: String,
         required: [true, 'You must add a password']
@@ -33,15 +39,6 @@ const UserSchema = new Schema({
 /**
  * Virtuals
  */
-
- //Public profile information
- UserSchema.virtual('profile').get(function(){
-     return {
-         'name': this.name,
-         'email': this.email
-     };
- });
-
  //Token information
  UserSchema.virtual('token').get(function(){
      return {

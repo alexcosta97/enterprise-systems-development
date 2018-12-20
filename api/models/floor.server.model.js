@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Joi = require('joi');
+const Joi = require('../config/joi');
 
 //Defining the mongoose schema for the model
 var floorSchema = new Schema({
