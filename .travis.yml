@@ -25,6 +25,5 @@ install:
 - npm ci --prefix api
 - npm ci --prefix client
 script:
-- npm test --prefix api
 - npm run test:ci --prefix client
 - npm run e2e --prefix client
