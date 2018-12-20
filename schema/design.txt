@@ -15,7 +15,7 @@ User
 -
 userID int PK
 name string
-username string UNIQUE
+email string UNIQUE
 password string
 role int default=0
 

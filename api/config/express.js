@@ -1,13 +1,16 @@
-var config = require('./config');
-var express = require('express');
-var morgan = require('morgan');
-var compress = require('compression');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var session = require('express-session');
+const config = require('./config');
+const express = require('express');
+const morgan = require('morgan');
+const compress = require('compression');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const session = require('express-session');
+const passport = require('@passport-next/passport');
+const mongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
 
-module.exports = function(){
-    var app = express();
+module.exports = () => {
+    const app = express();
 
     if(process.env.NODE_ENV === 'development'){
         app.use(morgan('dev'));
@@ -24,7 +27,17 @@ module.exports = function(){
         secret: config.sessionSecret
     }));
 
-    require('../app/routes/index.server.routes');
+    app.use(passport.initialize());
+    //Persist sessions with MongoStore to enable sessions for passport twitter
+    app.use(passport.session({
+        secret: config.sessionSecret,
+        resave: true,
+        saveUninitialized: true,
+        store: new mongoStore({
+            mongooseConnection: mongoose.connection,
+            db: config.db
+        })
+    }));
 
-    app.use(express.static('./public'));
-}
+    return app;
+};
