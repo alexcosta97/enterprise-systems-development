@@ -12,7 +12,7 @@ cache:
 matrix:
   fast_finish: true
 addons:
-  apt:
+  apt: # Linux packages needed for Cypress
     packages:
     - xvfb
     - libgtk2.0-0
@@ -22,8 +22,9 @@ addons:
     - libxss1
     - libasound2
 install:
-- npm ci --prefix api
+# - npm ci --prefix api
 - npm ci --prefix client
 script:
+# - npm run test --prefix api
 - npm run test:ci --prefix client
 - npm run e2e --prefix client
