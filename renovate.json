@@ -1,6 +1,6 @@
 {
   "extends": [
     "@wopian",
-    "monorepo:angular"
+    "group:angularMonorepo"
   ]
 }
