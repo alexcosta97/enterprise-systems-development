@@ -6,7 +6,7 @@ const passport = require('passport');
 
 var db = mongoose();
 var app = express();
-require('./config/passport');
+require('./config/passport')();
 
 const authRoute = require('./routes/auth.routes');
 const userRoutes = require('./routes/users.server.routes');
