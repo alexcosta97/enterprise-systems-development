@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
+const Joi = require('../config/joi');
 
 
 // Create user schema for the database
@@ -39,6 +40,26 @@ UserSchema.methods.isValidPassword = async function(password){
     const user = this;
     const compare = await bcrypt.compare(password, user.password);
     return compare;
+}
+
+UserSchema.statics.validateInput = function(userInput){
+    const input = {
+        name: Joi.string().required(),
+        email: Joi.string().email().min(5).max(255).required(),
+        phone: Joi.string().min(5).max(50).required(),
+        password: Joi.string.min(8).required()
+    };
+
+    return Joi.validate(userInput, input);
+}
+
+UserSchema.static.validateLogin = function(loginInput){
+    const input = {
+        email: Joi.string().min(5).max(255).email().required(),
+        password: Joi.string().min(8).required()
+    }
+
+    return Joi.validate(loginInput, input);
 }
 
 module.exports = mongoose.model('User', UserSchema);
