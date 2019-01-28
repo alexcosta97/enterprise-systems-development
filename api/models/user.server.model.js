@@ -47,13 +47,13 @@ UserSchema.statics.validateInput = function(userInput){
         name: Joi.string().required(),
         email: Joi.string().email().min(5).max(255).required(),
         phone: Joi.string().min(5).max(50).required(),
-        password: Joi.string.min(8).required()
+        password: Joi.string().min(8).required()
     };
 
     return Joi.validate(userInput, input);
 }
 
-UserSchema.static.validateLogin = function(loginInput){
+UserSchema.statics.validateLogin = function(loginInput){
     const input = {
         email: Joi.string().min(5).max(255).email().required(),
         password: Joi.string().min(8).required()

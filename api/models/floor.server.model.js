@@ -51,4 +51,4 @@ const validateFloor = (floor) => {
 
 //Exporting the model and the validation method
 exports.Floor = Floor;
-exports.validate = validatePicture;
+exports.validate = validateFloor;
