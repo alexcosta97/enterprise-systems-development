@@ -1,15 +1,11 @@
-const config = require('./config');
 const express = require('express');
 const morgan = require('morgan');
 const compress = require('compression');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const session = require('express-session');
 const passport = require('@passport-next/passport');
-const mongoStore = require('connect-mongo')(session);
-const mongoose = require('mongoose');
 
-module.exports = () => {
+module.exports = function() {
     const app = express();
 
     if(process.env.NODE_ENV === 'development'){
@@ -21,23 +17,7 @@ module.exports = () => {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(methodOverride());
-    app.use(session({
-        saveUninitialized: true,
-        resave: true,
-        secret: config.sessionSecret
-    }));
-
     app.use(passport.initialize());
-    //Persist sessions with MongoStore to enable sessions for passport twitter
-    app.use(passport.session({
-        secret: config.sessionSecret,
-        resave: true,
-        saveUninitialized: true,
-        store: new mongoStore({
-            mongooseConnection: mongoose.connection,
-            db: config.db
-        })
-    }));
 
     return app;
 };

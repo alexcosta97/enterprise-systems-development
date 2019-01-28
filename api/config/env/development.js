@@ -1,6 +1,6 @@
 module.exports = {
     //Development configuration options
-    db: 'mongo://localhost:27017/360-rooms',
+    db: 'mongodb://localhost:27017/360-rooms',
     sessionSecret: 'developmentSessionSecret',
     facebook: {
         clientID:     process.env.FACEBOOK_ID || 'id',

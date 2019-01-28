@@ -1,14 +1,22 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const mongoose = require('./config/mongoose');
-const express = ('./config/express');
-const passport = ('./config/passport');
+const express = require('./config/express');
+const passport = require('passport');
 
 var db = mongoose();
 var app = express();
-var passport = passport();
+require('./config/passport')();
+
+const authRoute = require('./routes/auth.routes');
+const userRoutes = require('./routes/users.server.routes');
+
+app.use('/auth/', authRoute);
+app.use('/user/', passport.authenticate('jwt', {session: false}), userRoutes);
+
 app.listen(3000);
+
 
 module.exports = app;
 
-console.log('Server running at http://localhost:3000/')
+console.log('Server running at http://localhost:3000/');
