@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const compress = require('compression');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const passport = require('@passport-next/passport');
 
 module.exports = function() {
     const app = express();
@@ -16,6 +17,7 @@ module.exports = function() {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(methodOverride());
+    app.use(passport.initialize());
 
     return app;
 };
