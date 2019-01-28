@@ -9,8 +9,7 @@ const signup = (req, res) => {
 
     try{
         const user = await User.create(_.pick(req.body, ['name', 'email', 'phone', 'password']));
-        let resUser = _.pick(user, ['_id', 'name', 'email', 'phone']);
-        const token = jwt.sign({user: resUser}, config.jwtSecret);
+        const token = user.signToken();
         res.json({message: 'Signup successful', token: token});
     } catch(error){
         res.json({message: error.message});

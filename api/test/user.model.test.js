@@ -1,5 +1,7 @@
 const User = require('../models/user.server.model');
-const expect = require('chai').expect;
+const chai = require('chai');
+chai.use(require('chai-jwt'));
+const expect = chai.expect;
 const mongoose = require('mongoose');
 const config = require('../config/config');
 const bcrypt = require('bcrypt');
@@ -8,7 +10,7 @@ let user;
 let input;
 
 describe('Users Model', () => {
-    before((done) => {
+    beforeEach((done) => {
         mongoose.connect(config.db, {useNewUrlParser: true, useCreateIndex: true});
         mongoose.connection.once('open', () => {
             mongoose.connection.dropDatabase(() => {
@@ -77,6 +79,16 @@ describe('Users Model', () => {
                 
                 let result = await bcrypt.compare('Password', userDB.password);
                 expect(result).to.be.true;
+            });
+        });
+    });
+
+    describe('Sign Token', () => {
+        it(`should sign a JWT for the user`, () => {
+            user.save((err, userDB) => {
+                expect(err).to.not.exist;
+                const token = userDB.signToken();
+                expect(token).to.be.a.jwt.and.have.claim('user');
             });
         });
     });
