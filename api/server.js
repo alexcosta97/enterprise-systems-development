@@ -2,7 +2,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const mongoose = require('./config/mongoose');
 const express = require('./config/express');
-const passport = require('@passport-next/passport');
+const passport = require('passport');
 
 var db = mongoose();
 var app = express();

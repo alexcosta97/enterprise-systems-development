@@ -1,5 +1,5 @@
 const express = require('express');
-const passport = require('@passport-next/passport');
+const passport = require('passport');
 const users = require('../controllers/user.controller');
 
 const router = express.Router();
