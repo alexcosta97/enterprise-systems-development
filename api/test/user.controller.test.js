@@ -12,24 +12,26 @@ let token;
 
 describe('Users Controller', () => {
     before((done) => {
-        mongoose.connect(config.db, {useNewUrlParser: true, useCreateIndex: true});
+        mongoose.connect(config.db, {useNewUrlParser: true, useCreateIndex: true, useFindAndModify: true});
         mongoose.connection.once('open', () => {
-            user = new User({
-                name: 'Test User',
-                email: 'mail@test.com',
-                phone: '12345',
-                password: 'Password'
-            });
-            user.save((err, user) => {
-                token = user.signToken();
-                input = {
-                    name: 'User Test',
-                    email: 'mail@mail.com',
-                    phone: '23456',
+            mongoose.connection.dropDatabase(() => {
+                user = new User({
+                    name: 'Test User',
+                    email: 'mail@test.com',
+                    phone: '12345',
                     password: 'Password'
-                };
-                done();
-            })
+                });
+                user.save((err, user) => {
+                    token = user.signToken();
+                    input = {
+                        name: 'User Test',
+                        email: 'mail@mail.com',
+                        phone: '23456',
+                        password: 'Password'
+                    };
+                    done();
+                });
+            });
         });
     });
 

@@ -11,7 +11,7 @@ let input;
 
 describe('Users Model', () => {
     beforeEach((done) => {
-        mongoose.connect(config.db, {useNewUrlParser: true, useCreateIndex: true});
+        mongoose.connect(config.db, {useNewUrlParser: true, useCreateIndex: true, useFindAndModify: true});
         mongoose.connection.once('open', () => {
             mongoose.connection.dropDatabase(() => {
                 input = {
