@@ -29,6 +29,6 @@ before_script:
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 script:
-- NODE_ENV=test npm run test --prefix api
+- npm run test --prefix api
 - npm run test:ci --prefix client
 - npm run e2e --prefix client
