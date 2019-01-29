@@ -65,7 +65,7 @@ const updateFloor = async (req, res) => {
                 _id: property._id,
                 name: `${property.address.houseNumber}, ${property.address.street}`
             },
-            deslevelcription: req.body.level,
+            level: req.body.level,
             imageURL: req.body.imageURL
         });
     }catch(err){
