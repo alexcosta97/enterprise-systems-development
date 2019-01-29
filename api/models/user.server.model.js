@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 const Joi = require('../config/joi');
+const _ = require('lodash');
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 
 // Create user schema for the database
@@ -40,6 +43,12 @@ UserSchema.methods.isValidPassword = async function(password){
     const user = this;
     const compare = await bcrypt.compare(password, user.password);
     return compare;
+}
+
+UserSchema.methods.signToken = function(){
+    const body = _.pick(this, ['_id', 'name', 'email', 'phone']);
+    const token = jwt.sign({user: body}, config.jwtSecret);
+    return token;
 }
 
 UserSchema.statics.validateInput = function(userInput){

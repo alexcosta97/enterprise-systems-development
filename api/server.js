@@ -11,8 +11,8 @@ require('./config/passport')();
 const authRoute = require('./routes/auth.routes');
 const userRoutes = require('./routes/users.server.routes');
 
-app.use('/auth/', authRoute);
-app.use('/user/', passport.authenticate('jwt', {session: false}), userRoutes);
+app.use('/api/auth/', authRoute);
+app.use('/api/users/',userRoutes);
 
 app.listen(3000);
 

@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const compress = require('compression');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const passport = require('@passport-next/passport');
+const passport = require('passport');
 
 module.exports = function() {
     const app = express();

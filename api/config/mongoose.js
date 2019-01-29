@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 //Uses mongoose and config to connect to the database and returns the database object
 //Also connects the models to the database and loads them so that the other modules can access them
 module.exports = function(){
-    var db = mongoose.connect(config.db, {useNewUrlParser:true, useCreateIndex: true});
+    var db = mongoose.connect(config.db, {useNewUrlParser:true, useCreateIndex: true, useFindAndModify: true});
     
     //Add models to the database instance
     require('../models/user.server.model');

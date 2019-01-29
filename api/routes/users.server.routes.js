@@ -1,8 +1,10 @@
 const express = require('express');
-const users = require('../controllers/users.server.controller');
+const passport = require('passport');
+const users = require('../controllers/user.controller');
 
 const router = express.Router();
-router.get('/me', users.me);
-router.put('/:id/password', users.changePassword);
+router.get('/:id', users.getUser);
+router.put('/', passport.authenticate('jwt', {session: false}), users.update);
+router.delete('/', passport.authenticate('jwt', {session: false}), users.delete);
 
 module.exports = router;

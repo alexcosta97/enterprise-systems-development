@@ -1,19 +1,19 @@
-const passport = require('@passport-next/passport');
+const passport = require('passport');
 const localStrategy = require('@passport-next/passport-local').Strategy;
 const UserModel = require('mongoose').model('User');
 
 module.exports = function() {
     passport.use('login', new localStrategy({
         usernameField: 'email',
-        passwordField: 'password'
-    }, async (email, password, done) => {
+        passwordField: 'password',
+    }, async (username, password, done) => {
         try{
             //Verify that the information provided is valid
-            const {error} = UserModel.validateLogin({email: email, password: password});
+            const {error} = UserModel.validateLogin({email: username, password: password});
             if(error) return done(null, false, {message: error.details[0].message});
 
             //Find the user associated with the email provided
-            const user = UserModel.findOne({email: email});
+            const user = await UserModel.findOne({email: username});
             if(!user){
                 return done(null, false, {message: 'User not found'});
             }
