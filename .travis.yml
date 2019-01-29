@@ -29,6 +29,6 @@ install:
 before_script:
   - mongo mydb_test --eval 'db.createUser({user:"travis", pwd:"test",roles:["readWrite"]});'
 script:
-- npm run test --prefix api
+- NODE_ENV=test npm run test --prefix api
 - npm run test:ci --prefix client
 - npm run e2e --prefix client
