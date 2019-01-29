@@ -6,14 +6,8 @@ const Joi = require('../config/joi');
 //Creating Mongoose database schema
 var pictureSchema = new Schema({
     room: {
-        // Creating a custom schema to keep certain details of the room inside the picture document
-        type: new Schema({
-            // No extra validation is necessary inside the schema since the info comes from the original room's document
-            name: {
-                type: String,
-                required: true
-            }
-        }),
+        type: Schema.Types.ObjectId,
+        ref: 'Room',
         required: true
     },
     imageURL: {
@@ -25,11 +19,8 @@ var pictureSchema = new Schema({
     }
 });
 
-//Creating model class
-const Picture = mongoose.model('Picture', pictureSchema);
-
 //Creating client-side input validation method
-const validatePicture = (picture) => {
+pictureSchema.statics.validatePicture = (picture) => {
     //declaring a Joi-specific schema for the input
     const schema = {
         room: Joi.objectId().required(),
@@ -40,6 +31,6 @@ const validatePicture = (picture) => {
     return Joi.validate(picture, schema);
 };
 
-//exporting the model and the validation method
-exports.Picture = Picture;
-exports.validate = validatePicture;
+//Creating model class
+const Picture = mongoose.model('Picture', pictureSchema);
+module.exports = Picture;
