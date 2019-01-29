@@ -11,6 +11,8 @@ cache:
   - ~/.cache # Cypress binary
 matrix:
   fast_finish: true
+services:
+  -mongodb
 addons:
   apt: # Linux packages needed for Cypress
     packages:
@@ -24,6 +26,8 @@ addons:
 install:
 - npm ci --prefix api
 - npm ci --prefix client
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis", pwd:"test",roles:["readWrite"]});'
 script:
 - npm run test --prefix api
 - npm run test:ci --prefix client
