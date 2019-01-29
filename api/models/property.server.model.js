@@ -55,7 +55,6 @@ var PropertySchema = new Schema({
     },
     imageURL: {
         type: String,
-        required: true,
         minlength: 5,
         maxlength: 255,
         trim: true,
@@ -98,13 +97,12 @@ const validateProperty = (property) => {
     const schema = {
         houseNumber: Joi.string().min(1).max(20).required(),
         street: Joi.string().min(3).max(255).required(),
-        town: Joi.string().min(3).ax(255).required(),
+        town: Joi.string().min(3).max(255).required(),
         postCode: Joi.string().min(2).max(20).required(),
         county: Joi.string().min(3).max(255),
         country: Joi.string().min(3).max(255),
         description: Joi.string().min(10).max(2048),
-        imageURL: Joi.string().min(5).max(255).required().uri,
-        agentID: Joi.objectId().required()
+        imageURL: Joi.string().min(5).max(255).uri()
     };
 
     //returning the result of the validation

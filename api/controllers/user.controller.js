@@ -51,7 +51,7 @@ const del = async(req, res) => {
         return res.status(400).json({message: 'Invalid User ID'});
     }
 
-    if(!user) return res.stauts(404).json({message: 'There was no user with the given ID'});
+    if(!user) return res.status(404).json({message: 'There was no user with the given ID.'});
     return res.json(user);
 }
 
