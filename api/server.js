@@ -11,10 +11,13 @@ require('./config/passport')();
 const authRoute = require('./routes/auth.routes');
 const userRoutes = require('./routes/users.server.routes');
 const propertiesRoutes = require('./routes/properties.routes');
+const floorsRoutes = require('./routes/floors.routes');
+
 
 app.use('/api/auth/', authRoute);
 app.use('/api/users/',userRoutes);
 app.use('/api/properties/', propertiesRoutes);
+app.use('/api/floors/', floorsRoutes);
 
 app.listen(3000);
 
