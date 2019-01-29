@@ -8,6 +8,10 @@ var roomSchema = new Schema({
         ref: 'Floor',
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     pixelsXMin: {
         type: Number,
         required: true
@@ -25,6 +29,7 @@ var roomSchema = new Schema({
 roomSchema.statics.validateInput = (input) => {
     const inputSchema = {
         floor: Joi.objectId().required(),
+        name: Joi.string().max(255).required(),
         pixelsXMin: Joi.number().required(),
         pixelsXMax: Joi.number().required(),
         pixelsY: Joi.number().required()
