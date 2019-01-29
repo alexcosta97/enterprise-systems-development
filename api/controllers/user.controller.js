@@ -52,7 +52,6 @@ const del = async(req, res) => {
     }
 
     if(!user) return res.status(404).json({message: 'There was no user with the given ID.'});
-    return res.json(user);
 }
 
 exports.signup = signup;
