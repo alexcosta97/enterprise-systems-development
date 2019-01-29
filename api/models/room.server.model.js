@@ -1,13 +1,36 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const Joi = require('../config/joi');
 
 var roomSchema = new Schema({
     floor : {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Floor'
+        ref: 'Floor',
+        required: true
     },
-    pixelsX: Number,
-    pixelsY: Number
+    pixelsXMin: {
+        type: Number,
+        required: true
+    },
+    pixelsXMax: {
+        type: Number,
+        required: true
+    },
+    pixelsY: {
+        type: Number,
+        required: true
+    }
 });
 
-mongoose.model('Room', roomSchema);
+roomSchema.statics.validateInput = (input) => {
+    const inputSchema = {
+        floor: Joi.objectId().required(),
+        pixelsXMin: Joi.number().required(),
+        pixelsXMax: Joi.number().required(),
+        pixelsY: Joi.number().required()
+    }
+
+    return Joi.validate(input, inputSchema);
+};
+
+module.exports = mongoose.model('Room', roomSchema);
