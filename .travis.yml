@@ -12,7 +12,7 @@ cache:
 matrix:
   fast_finish: true
 services:
-  -mongodb
+  - mongodb
 addons:
   apt: # Linux packages needed for Cypress
     packages:
