@@ -25,7 +25,6 @@ var floorSchema = new Schema({
     },
     imageURL: {
         type: String,
-        required: true,
         minlength: 5,
         maxlength: 255,
         trim: true,
@@ -42,7 +41,7 @@ const validateFloor = (floor) => {
     const schema = {
         property: Joi.objectId().required(),
         level: Joi.string().min(1).max(10).required(),
-        imageURL: Joi.string().min(5).max(255).uri().required()
+        imageURL: Joi.string().min(5).max(255).uri()
     };
 
     //using joi to validate the input and returning the result
