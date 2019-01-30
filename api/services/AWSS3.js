@@ -1,6 +1,5 @@
 const AWS = require('aws-sdk');
 const config = require('../config/config');
-const fs = require('fs');
 
 const S3config = {
     credentials: new AWS.CognitoIdentityCredentials({
