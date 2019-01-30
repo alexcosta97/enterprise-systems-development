@@ -6,8 +6,8 @@ const multer = require('../config/multer');
 const router = express.Router();
 router.get('/', properties.getAll);
 router.get('/:id', properties.getProperty);
-router.post('/', passport.authenticate('jwt', {session: false}), multer.single('picture'), properties.createProperty);
-router.put('/:id', passport.authenticate('jwt', {session: false}), multer.single('picture'), properties.updateProperty);
+router.post('/', passport.authenticate('jwt', {session: false}), multer.array('picture'), properties.createProperty);
+router.put('/:id', passport.authenticate('jwt', {session: false}), multer.array('picture'), properties.updateProperty);
 router.delete('/:id', passport.authenticate('jwt', {session: false}), properties.delete);
 
 module.exports = router;

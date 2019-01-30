@@ -1,5 +1,6 @@
 const {Property, validate} = require('../models/property.server.model');
 const _ = require('lodash');
+const {uploadPhoto} = require('../services/AWSS3');
 
 const getAll = async (req, res) => {
     let properties;
@@ -41,7 +42,7 @@ const createProperty = async (req, res) => {
                 country: req.body.country
             },
             description: req.body.description,
-            imageURL: req.body.imageURL,
+            imageURL: req.files[0].location,
             agent: req.user
         });
 
@@ -67,7 +68,7 @@ const updateProperty = async (req, res) => {
                 country: req.body.country
             },
             description: req.body.description,
-            imageURL: req.body.imageURL,
+            imageURL: req.files[0].location,
             agent: req.user
         });
     }catch(err){

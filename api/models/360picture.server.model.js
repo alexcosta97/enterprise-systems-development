@@ -15,7 +15,7 @@ var pictureSchema = new Schema({
         required: true,
         minlength: 5,
         maxlength: 255,
-        trim: true
+        trim: true,
     }
 });
 
@@ -24,7 +24,7 @@ pictureSchema.statics.validatePicture = (picture) => {
     //declaring a Joi-specific schema for the input
     const schema = {
         room: Joi.objectId().required(),
-        imageURL: Joi.string().min(5).max(255).uri().required()
+        imageURL: Joi.string().uri()
     };
 
     //using joi to validate the user input and returns the result
