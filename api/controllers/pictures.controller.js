@@ -38,7 +38,7 @@ const createPicture = async (req, res) => {
     try{
         picture = await Picture.create({
             room: room._id,
-            imageURL: req.body.imageURL
+            imageURL: req.files[0].location
         });
     }catch(err){
         console.log(err);
@@ -58,7 +58,7 @@ const updatePicture = async (req, res) => {
     try{
         picture = await Picture.findByIdAndUpdate(req.params.id, {
             room: room._id,
-            imageURL: req.body.imageURL
+            imageURL: req.files[0].location
         });
     }catch(err){
         return res.status(400).json({message: `The given ID isn't valid`});

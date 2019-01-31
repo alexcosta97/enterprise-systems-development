@@ -1,28 +1,18 @@
 const AWS = require('aws-sdk');
 const config = require('../config/config');
 
-const S3config = new AWS.config({
-    accessKeyId: config.awsAccessKeyID,
-    secretKeyAccessKey: config.awsSecretAccessKey,
+const S3config = {
+    credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'eu-west-2:90eb0678-13b8-4637-9162-0d4d7668e856'
+    }),
     region: 'eu-west-2', //Set for London Region
-    apiVersion: '2006-03-01',
-    params: {
-        Bucket: '360rooms.21611431'
-    }
-});
-
-const S3 = new AWS.S3(S3config);
-
-const uploadPhoto = (photo, fileName) => {
-    S3.upload({
-        Key: fileName,
-        Body: photo,
-        ACL: 'public-read-write'
-    }, (err, data) => {
-        if(err) return err;
-        else return data.Location;
-    });
 };
 
+AWS.config.update(S3config);
+
+const S3 = new AWS.S3({
+    apiVersion: '2006-03-01'
+});
+
+
 exports.S3 = S3;
-exports.uploadPhoto = uploadPhoto;

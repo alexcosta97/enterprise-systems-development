@@ -41,7 +41,7 @@ const createFloor = async (req, res) => {
                 name: `${property.address.houseNumber}, ${property.address.street}`
             },
             level: req.body.level,
-            imageURL: req.body.imageURL
+            imageURL: req.files[0].location
         });
 
         return res.json(floor);
@@ -66,7 +66,7 @@ const updateFloor = async (req, res) => {
                 name: `${property.address.houseNumber}, ${property.address.street}`
             },
             level: req.body.level,
-            imageURL: req.body.imageURL
+            imageURL: req.files[0].location
         });
     }catch(err){
         return res.status(400).json({message: `The given ID isn't valid`});
