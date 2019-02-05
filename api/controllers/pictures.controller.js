@@ -34,11 +34,13 @@ const createPicture = async (req, res) => {
     let room = await Room.findById(req.body.room).exec();
     if(!room) return res.status(400).json({message: 'Invalid Room ID'});
 
+    let imageURL = (req.file) ? req.file.location : 'noImage';
+
     let picture;
     try{
         picture = await Picture.create({
             room: room._id,
-            imageURL: req.files[0].location
+            imageURL: imageURL
         });
     }catch(err){
         console.log(err);
@@ -54,11 +56,13 @@ const updatePicture = async (req, res) => {
     let room = await Room.findById(req.body.room).exec();
     if(!room) return res.status(400).json({message: 'Invalid Room ID'});
 
+    let imageURL = (req.file) ? req.file.location : 'noImage';
+
     let picture;
     try{
         picture = await Picture.findByIdAndUpdate(req.params.id, {
             room: room._id,
-            imageURL: req.files[0].location
+            imageURL: imageURL
         });
     }catch(err){
         return res.status(400).json({message: `The given ID isn't valid`});

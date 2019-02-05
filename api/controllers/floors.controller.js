@@ -34,14 +34,13 @@ const createFloor = async (req, res) => {
     let property = await Property.findById(req.body.property).exec();
     if(!property) return res.status(400).json({message: 'Invalid Property ID'});
 
+    let imageURL = (req.file) ? req.file.location : 'noImage';
+
     try{
         const floor = await Floor.create({
-            property: {
-                _id: property._id,
-                name: `${property.address.houseNumber}, ${property.address.street}`
-            },
+            property: property._id,
             level: req.body.level,
-            imageURL: req.files[0].location
+            imageURL: imageURL
         });
 
         return res.json(floor);
@@ -58,15 +57,14 @@ const updateFloor = async (req, res) => {
     let property = await Property.findById(req.body.property).exec();
     if(!property) return res.status(400).json({message: 'Invalid Property ID'});
 
+    let imageURL = (req.file) ? req.file.location : 'noImage';
+
     let floor;
     try{
         floor = await Floor.findByIdAndUpdate(req.params.id, {
-            property: {
-                _id: property._id,
-                name: `${property.address.houseNumber}, ${property.address.street}`
-            },
+            property: property._id,
             level: req.body.level,
-            imageURL: req.files[0].location
+            imageURL: imageURL
         });
     }catch(err){
         return res.status(400).json({message: `The given ID isn't valid`});
