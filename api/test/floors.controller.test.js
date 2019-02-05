@@ -46,7 +46,7 @@ describe('Floors Controller', () => {
                     });
                     property.save((err, property) => {
                         floor = new Floor({
-                            property: property._id,
+                            property: property._id.toString(),
                             level: '1'
                         });
                         floor.save((err, floor) => {

@@ -5,7 +5,7 @@ const _ = require('lodash');
 const getAll = async (req, res) => {
     let floors;
     try{
-        floors = await Floor.find({'property._id': req.query.property}).sort('level').exec();
+        floors = await Floor.find({'property': req.query.property ? req.query.property : ''}).sort('level').exec();
     } catch(err){
         return res.status(500).json({message: 'There was an error processing your request.'});
     }
