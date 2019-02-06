@@ -1,19 +1,18 @@
 os:
 - linux
-# - windows
 dist: xenial
 language: node_js
 node_js: node
 cache:
   npm: true
   directories:
-  - ~/.cache # Cypress binary
+  - "~/.cache"
 matrix:
   fast_finish: true
 services:
-  - mongodb
+- mongodb
 addons:
-  apt: # Linux packages needed for Cypress
+  apt:
     packages:
     - xvfb
     - libgtk2.0-0
@@ -22,24 +21,24 @@ addons:
     - libnss3
     - libxss1
     - libasound2
-
 jobs:
   include:
-    - stage: client release
-      install: npm ci --prefix client
-      script: 
-      - npm run test:ci --prefix client
-      - npm run e2e --prefix client
-    - stage: api
-      install: npm ci --prefix api
-      before_script: 
-        - sleep 15
-        - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-      script: npm run test --prefix api
-      before_deploy: cd ./api
-      deploy:
-        provider: heroku
-        app: three-sixty-rooms-bnu
-        api_key: a8H5Wj1b5RraUFURASVq3G+7Ms6gG/4/RkdXF1oK+kKTUrVBQANs+GCjwgGOnP27ws8rRAjUWleV5N/Yy0NEqrq0KMbXlMi8VSvvek9ieXU8B95VKVvYRcLwderZzaJGsuvMD4yrWn3y3YjfZ0t7/ps6uEWzRhMlKoFNdRKKywUMjlr5oVRqie6Z/ojuTWh0Y4F+ZHvBPuwjXtsunrP99Haq/qAE86vJDvbHLmE/iTeuuEx8lnZFbY9w1KefDU6sy5G6+BXu317Ok8yQggWYiVlGoDGjZf0T4SXLjz+N6tU2RQlPnK0+o0eduHlDZYxKTmnLI8EaNrl99M/Jt1eZyUUlYBp7l3oWRz7iL7bANs3FAKD3CHZoJ6NMvJg+nXiANWPza3MrhbpOvG6wPMVyUM4d0McFCJa4mBWM5w6d4lfoLsJMeKYkOCPacsr6ovsNDy43men4AxEawUOYbyY1WLEXjtY7fDRZ0PaOjEJhZ2eT74F/sYzUYVCf6VYJQUd4I9c7z3IlsrF7wYWmyRsUEJlY15oifa8Ls05twCuL89i7b8zj8fV4T8QrbiW1hdPyHxr5y2TY3UbTXYuXNE+8X/GQEdp9x0GMfEd6qNjpVqL3aHtZnFzojVkewgEnX4F/qYe3IvClpk90RkNzMn0jzMrWJbKRF1HzhCEFXeYT+mk=
-        on:
-          all_branches: true
+  - stage: client release
+    install: npm ci --prefix client
+    script:
+    - npm run test:ci --prefix client
+    - npm run e2e --prefix client
+  - stage: api
+    install: npm ci --prefix api
+    before_script:
+    - sleep 15
+    - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+    script: npm run test --prefix api
+    before_deploy: cd ./api
+    deploy:
+      provider: heroku
+      app: three-sixty-rooms-bnu
+      api_key:
+        secure: oAJNPoEGtM53UaLLNz1j/d/4cM/WCdHQxK6ihefEvsSxIpkJUHyzeWyEGEwLDfYpYKuV0IvZt+j4PvxvnnY8he+gp1KRC1NjuLoRw/8iSWAjixYNar7OJzn6VjxG3Dlf5P743LMKFoeJjn3IY1zu+5r4vanDKilXsdK5M/uIoGs0zMtxYnaBV7sLPsBX2gp3BAL7UaR745xo+h5vbFH7ZB9KC7z2QtNYlzB4X2pAk0s8j8AlA73J4m53PrxPdO32iaEQ569n3hZEczVHtMFjalWqVTlpcmOpJKJ295io5QGTPkrcSKicoyZvV+ZefG3s7Tro2z3WDy9tfYuHSWCny1WvAAij4VesWPswFN+2ju75IHii5I7GDqWMzmCt6S5HhSy/U66SzkintoHpNuC14FPfxYIAcBcWBDDDHQuhasD9Qs0RkKunATgHkCT5FWUyeq2HxF2A4bt487Q0hIYo+fnU1BYtXRjwpO9ueA0ayUk5Kb0YME59OxwkH23gOQQUVhVih4P0/DMLIQv8WtpdiVTnt3PsD5ZEtTzFeCBHhthjv3CUOCIct02JtDL6m3XQjotlm0xp251pKwO1vDja12sQqt6DOIhDstUT5sx4VAQ1yoA90TanBlT1W5IMXFvun/9YynZP7GS3pdSVfJCTufsB2xDxXZlhliINiE7TcuM=
+      on:
+        all_branches: true
