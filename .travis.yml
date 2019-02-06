@@ -41,3 +41,5 @@ jobs:
         provider: heroku
         app: three-sixty-rooms-bnu
         api_key: a8H5Wj1b5RraUFURASVq3G+7Ms6gG/4/RkdXF1oK+kKTUrVBQANs+GCjwgGOnP27ws8rRAjUWleV5N/Yy0NEqrq0KMbXlMi8VSvvek9ieXU8B95VKVvYRcLwderZzaJGsuvMD4yrWn3y3YjfZ0t7/ps6uEWzRhMlKoFNdRKKywUMjlr5oVRqie6Z/ojuTWh0Y4F+ZHvBPuwjXtsunrP99Haq/qAE86vJDvbHLmE/iTeuuEx8lnZFbY9w1KefDU6sy5G6+BXu317Ok8yQggWYiVlGoDGjZf0T4SXLjz+N6tU2RQlPnK0+o0eduHlDZYxKTmnLI8EaNrl99M/Jt1eZyUUlYBp7l3oWRz7iL7bANs3FAKD3CHZoJ6NMvJg+nXiANWPza3MrhbpOvG6wPMVyUM4d0McFCJa4mBWM5w6d4lfoLsJMeKYkOCPacsr6ovsNDy43men4AxEawUOYbyY1WLEXjtY7fDRZ0PaOjEJhZ2eT74F/sYzUYVCf6VYJQUd4I9c7z3IlsrF7wYWmyRsUEJlY15oifa8Ls05twCuL89i7b8zj8fV4T8QrbiW1hdPyHxr5y2TY3UbTXYuXNE+8X/GQEdp9x0GMfEd6qNjpVqL3aHtZnFzojVkewgEnX4F/qYe3IvClpk90RkNzMn0jzMrWJbKRF1HzhCEFXeYT+mk=
+        on:
+          all_branches: true
