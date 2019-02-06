@@ -26,7 +26,7 @@ addons:
 jobs:
   include:
     - stage: client release
-      install: npm install --prefix api
+      install: npm ci --prefix client
       script: 
       - npm run test:ci --prefix client
       - npm run e2e --prefix client
