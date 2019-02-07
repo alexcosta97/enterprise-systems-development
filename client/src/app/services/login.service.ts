@@ -24,6 +24,7 @@ export interface SignUpResponse {
 })
 export class LoginService {
   private authURL = 'https://three-sixty-rooms-bnu.herokuapp.com/auth/';
+  private jwtHelper = new JwtHelperService();
 
   /**
    * Allows for a user to login
@@ -102,7 +103,6 @@ export class LoginService {
   }
 
   constructor(
-    private http: HttpClient,
-    private jwtHelper: JwtHelperService
-    ) { }
+    private http: HttpClient
+  ) { }
 }
