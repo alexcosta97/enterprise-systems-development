@@ -23,7 +23,7 @@ export interface SignUpResponse {
   providedIn: 'root'
 })
 export class LoginService {
-  private authURL = 'https://three-sixty-rooms-bnu.herokuapp.com/auth/';
+  private authURL = 'https://three-sixty-rooms-bnu.herokuapp.com/api/auth/';
   private jwtHelper = new JwtHelperService();
 
   /**

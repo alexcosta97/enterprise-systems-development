@@ -9,7 +9,7 @@ import { ErrorHandler } from '../services/errorHandler';
   providedIn: 'root'
 })
 export class PropertiesService {
-  private propertiesURL = 'https://three-sixty-rooms-bnu.herokuapp.com/properties/';
+  private propertiesURL = 'https://three-sixty-rooms-bnu.herokuapp.com/api/properties';
   private errorHandler: ErrorHandler = new ErrorHandler();
 
   /**
