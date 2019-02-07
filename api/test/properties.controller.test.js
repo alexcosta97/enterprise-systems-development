@@ -189,7 +189,6 @@ describe('Properties Controller', () => {
     //             done();
     //         });
     //     });
-
     //     it(`should send a 400 code if the ID sent isn't valid`, (done) => {
     //         chai.request(app)
     //         .put(`/api/properties/fakeID`)
