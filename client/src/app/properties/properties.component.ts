@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'properties',
+  selector: 'app-properties',
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.css']
 })
