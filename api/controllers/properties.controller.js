@@ -1,11 +1,11 @@
 const {Property, validate} = require('../models/property.server.model');
 const _ = require('lodash');
-const {uploadPhoto} = require('../services/AWSS3');
 
 const getAll = async (req, res) => {
     let properties;
     try{
-        properties = await Property.find({}).sort('propertyName').exec();
+        if(req.query.agent) properties = await Property.find({'agent._id': req.query.agent}).exec();
+        else properties = await Property.find({}).exec();
     } catch(err){
         return res.status(500).json({message: 'There was an error processing your request.'});
     }
