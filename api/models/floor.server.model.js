@@ -30,6 +30,7 @@ const Floor = mongoose.model('Floor', floorSchema);
 const validateFloor = (floor) => {
     //declaring the Joi-specific schema for the input
     const schema = {
+        _id: Joi.objectId(),
         property: Joi.objectId().required(),
         level: Joi.string().min(1).max(10).required(),
         imageURL: Joi.string().min(5).max(255).uri()

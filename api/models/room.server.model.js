@@ -28,6 +28,7 @@ var roomSchema = new Schema({
 
 roomSchema.statics.validateInput = (input) => {
     const inputSchema = {
+        _id: Joi.objectId(),
         floor: Joi.objectId().required(),
         name: Joi.string().max(255).required(),
         pixelsXMin: Joi.number().required(),

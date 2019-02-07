@@ -95,6 +95,7 @@ const Property = mongoose.model('Property', PropertySchema);
 const validateProperty = (property) => {
     //declaring a joi-specific schema for the client input
     const schema = {
+        _id: Joi.objectId(),
         houseNumber: Joi.string().min(1).max(20).required(),
         street: Joi.string().min(3).max(255).required(),
         town: Joi.string().min(3).max(255).required(),
