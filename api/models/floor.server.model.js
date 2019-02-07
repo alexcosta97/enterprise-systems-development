@@ -5,17 +5,8 @@ const Joi = require('../config/joi');
 //Defining the mongoose schema for the model
 var floorSchema = new Schema({
     property: {
-        type: new Schema({
-            //Creating custom schema to store the most frequently used
-            //data for the property
-            //No validation needed here since the
-            //information comes from the property's original documents
-            name:{
-                type: String,
-                required: true
-            }
-        }),
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'Property'
     },
     level: {
         type: String,

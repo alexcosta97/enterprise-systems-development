@@ -5,7 +5,8 @@ const {uploadPhoto} = require('../services/AWSS3');
 const getAll = async (req, res) => {
     let properties;
     try{
-        properties = await Property.find({}).sort('propertyName').exec();
+        if(req.query.agent) properties = await Property.find({'agent._id': req.query.agent}).exec();
+        else properties = await Property.find({}).exec();
     } catch(err){
         return res.status(500).json({message: 'There was an error processing your request.'});
     }
@@ -29,7 +30,12 @@ const getProperty = async(req, res) => {
 
 const createProperty = async (req, res) => {
     const {error} = validate(req.body);
-    if(error) return res.status(400).json({message: error.details[0].message});
+    if(error) {
+        console.log(error);
+        return res.status(400).json({message: error.details[0].message});
+    }
+
+    let imageURL = (req.file) ? req.file.location : 'noImage';
 
     try{
         const property = await Property.create({
@@ -42,7 +48,7 @@ const createProperty = async (req, res) => {
                 country: req.body.country
             },
             description: req.body.description,
-            imageURL: req.files[0].location,
+            imageURL: imageURL,
             agent: req.user
         });
 
@@ -56,6 +62,8 @@ const updateProperty = async (req, res) => {
     const {error} = validate(req.body);
     if(error) return res.status(400).json({message: error.details[0].message});
 
+    let imageURL = (req.file) ? req.file.location : 'noImage';
+
     let property;
     try{
         property = await Property.findByIdAndUpdate(req.params.id, {
@@ -68,7 +76,7 @@ const updateProperty = async (req, res) => {
                 country: req.body.country
             },
             description: req.body.description,
-            imageURL: req.files[0].location,
+            imageURL: imageURL,
             agent: req.user
         });
     }catch(err){

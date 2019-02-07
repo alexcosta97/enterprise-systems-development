@@ -109,23 +109,22 @@ describe('Properties Controller', () => {
         });
     });
 
-    // describe('Create Property', () => {
-    //     it(`should send the newly created property`, (done) => {
-    //         chai.request(app)
-    //         .post(`/api/properties`)
-    //         .set('x-auth-token', token)
-    //         .attach('picture', fs.readFileSync('./test.png'), 'test.png')
-    //         .type('form')
-    //         .send(input)
-    //         .then(res => {
-    //             expect(res).to.have.status(200);
-    //             expect(res).to.be.json;
-    //             expect(res.body).to.be.an('object');
-    //             expect(res.body.address.houseNumber).to.be.equal(input.houseNumber);
-    //             expect(res.body.agent._id).to.be.equal(user._id.toString());
-    //             done();
-    //         });
-    //     });
+    describe('Create Property', () => {
+        it(`should send the newly created property`, (done) => {
+            chai.request(app)
+            .post(`/api/properties`)
+            .set('x-auth-token', token)
+            .send(input)
+            .then(res => {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body).to.be.an('object');
+                expect(res.body.address.houseNumber).to.be.equal(input.houseNumber);
+                expect(res.body.agent._id).to.be.equal(user._id.toString());
+                done();
+            });
+        });
+    });
 
     //     it(`should send a 400 error if the input is incorrect`, (done) => {
     //         chai.request(app)
@@ -190,7 +189,6 @@ describe('Properties Controller', () => {
     //             done();
     //         });
     //     });
-
     //     it(`should send a 400 code if the ID sent isn't valid`, (done) => {
     //         chai.request(app)
     //         .put(`/api/properties/fakeID`)

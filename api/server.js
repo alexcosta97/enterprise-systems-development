@@ -23,9 +23,8 @@ app.use('/api/floors/', floorsRoutes);
 app.use('/api/rooms/', roomsRoutes);
 app.use('/api/pictures/', picturesRoutes);
 
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
 module.exports = app;
-
-console.log('Server running at http://localhost:3000/');
