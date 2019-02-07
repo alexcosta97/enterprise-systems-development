@@ -72,14 +72,14 @@ export class LoginService {
    * Checks if the user is logged in
    */
   isLoggedIn(): boolean {
-    return !this.jwtHelper.isTokenExpired();
+    return !this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
   }
 
   /**
    * Gets the current user details from the JWT Token
    */
   get currentUser(): User {
-    return this.jwtHelper.decodeToken(this.jwtHelper.tokenGetter());
+    return this.jwtHelper.decodeToken(localStorage.getItem('token'));
   }
 
   logout(): void {
