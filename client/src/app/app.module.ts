@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginService } from './services/login.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserComponent } from './user/user.component';
 import { PropertiesComponent } from './properties/properties.component';
