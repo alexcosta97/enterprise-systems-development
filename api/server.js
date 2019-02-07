@@ -22,8 +22,8 @@ app.use('/api/properties/', propertiesRoutes);
 app.use('/api/floors/', floorsRoutes);
 app.use('/api/rooms/', roomsRoutes);
 app.use('/api/pictures/', picturesRoutes);
-
-app.listen(3000);
+if(process.env.NODE_ENV !== 'production') app.listen(3000);
+else app.listen(80);
 
 
 module.exports = app;
