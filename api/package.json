@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm install && nodemon server.js",
     "test": "NODE_ENV=test mocha --timeout 10000 --exit"
   },
   "repository": {
