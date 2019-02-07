@@ -34,6 +34,7 @@ describe('Pictures Controller', () => {
                 user.save((err, user) => {
                     token = user.signToken();
                     property = new Property({
+                        title: 'Lovely Property',
                         address: {
                             houseNumber: '1',
                             street: 'Street',
