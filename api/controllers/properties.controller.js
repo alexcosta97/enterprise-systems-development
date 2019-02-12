@@ -1,6 +1,5 @@
 const {Property, validate} = require('../models/property.server.model');
 const _ = require('lodash');
-const {uploadPhoto} = require('../services/AWSS3');
 
 const getAll = async (req, res) => {
     let properties;
