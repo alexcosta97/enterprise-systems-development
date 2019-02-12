@@ -16,7 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material-module/material-module.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule } from '@angular/material';
 import { LoginService } from './services/login.service';
 import { UsersService } from './user/users.service';
 import { PropertiesService } from './properties/properties.service';
@@ -58,7 +58,8 @@ import { PicturesService } from './show-room/pictures.service';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [
     LoginService,
