@@ -1,3 +1,9 @@
-<p>
-  properties works!
-</p>
+<mat-list>
+  <mat-list-item *ngFor="let property of properties">
+    <a routerLink="/property/{{property._id}}">
+      <img matListAvatar src="{{property.imageURL}}" alt="Property Image">
+      <h3 matLine>{{property.title}}</h3>
+      <p matLine>{{property.description}}</p>
+    </a>
+  </mat-list-item>
+</mat-list>
