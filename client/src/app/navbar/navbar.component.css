@@ -2,6 +2,10 @@
   height: 100%;
 }
 
+.sidenav-content {
+  margin-left: 20px;
+}
+
 .mat-toolbar > a{
   text-decoration: none;
   color: white;
