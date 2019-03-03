@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'floors',
+  selector: 'app-floors',
   templateUrl: './floors.component.html',
   styleUrls: ['./floors.component.css']
 })

@@ -1,3 +1,30 @@
-<p>
-  auth works!
-</p>
+<h1>{{this.pageTitle}}</h1>
+<div class="form-container">
+  <div class="signup-container" *ngIf="!this.loginPage">
+    <mat-form-field>
+      <input matInput placeholder="Enter your name" [formControl]="name" required>
+      <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your phone number" [formControl]="phone" required>
+      <mat-error *ngIf="phone.invald">{{getPhoneErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter your email" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter your password" [type] = "hide ? 'password' : 'text'" [formControl]="password">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="submitForm()">{{this.pageTitle}}</button>
+  <p>Or <a routerLink="{{link}}">{{linkText}}</a></p>
+
+  <mat-error *ngIf="this.invalidLogin">Invalid Email or Password</mat-error>
+  <mat-error *ngIf="this.signUpError">There was an error signing you up. Please try again later.</mat-error>
+</div>

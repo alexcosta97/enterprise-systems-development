@@ -28,6 +28,7 @@ describe('Properties Controller', () => {
                 user.save((err, user) => {
                     token = user.signToken();
                     property = new Property({
+                        title: 'Lovely House',
                         address: {
                             houseNumber: '1',
                             street: 'Street',
@@ -44,6 +45,7 @@ describe('Properties Controller', () => {
                     });
                     property.save((err, property) => {
                         input = {
+                            title: 'Lovely House',
                             houseNumber: '2',
                             street: 'Street',
                             town: 'Town',

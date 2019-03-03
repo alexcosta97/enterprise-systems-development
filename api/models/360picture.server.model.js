@@ -23,6 +23,7 @@ var pictureSchema = new Schema({
 pictureSchema.statics.validatePicture = (picture) => {
     //declaring a Joi-specific schema for the input
     const schema = {
+        _id: Joi.objectId(),
         room: Joi.objectId().required(),
         imageURL: Joi.string().uri()
     };

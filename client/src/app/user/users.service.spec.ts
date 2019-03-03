@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PropertiesService } from './properties.service';
+import { UsersService } from './users.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
-describe('PropertiesService', () => {
+describe('UsersService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       HttpClient,
@@ -15,7 +15,7 @@ describe('PropertiesService', () => {
   }));
 
   it('should be created', () => {
-    const service: PropertiesService = TestBed.get(PropertiesService);
+    const service: UsersService = TestBed.get(UsersService);
     expect(service).toBeTruthy();
   });
 });

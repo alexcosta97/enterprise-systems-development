@@ -44,6 +44,12 @@ const AddressSchema = new Schema({
 
 //Creating the schema that mongoose will use to model a Property
 var PropertySchema = new Schema({
+    title: {
+        type: String,
+        minlength: 5,
+        maxlength: 255,
+        required: true
+    },
     address: {
         type: AddressSchema,
         required: true
@@ -95,6 +101,8 @@ const Property = mongoose.model('Property', PropertySchema);
 const validateProperty = (property) => {
     //declaring a joi-specific schema for the client input
     const schema = {
+        _id: Joi.objectId(),
+        title: Joi.string().min(5).max(255).required(),
         houseNumber: Joi.string().min(1).max(20).required(),
         street: Joi.string().min(3).max(255).required(),
         town: Joi.string().min(3).max(255).required(),

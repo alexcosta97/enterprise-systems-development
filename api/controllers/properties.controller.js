@@ -1,12 +1,11 @@
 const {Property, validate} = require('../models/property.server.model');
 const _ = require('lodash');
-const {uploadPhoto} = require('../services/AWSS3');
 
 const getAll = async (req, res) => {
     let properties;
     try{
-        if(req.query.agent) properties = await Property.find({'agent._id': req.query.agent}).exec();
-        else properties = await Property.find({}).exec();
+        if(req.query.agent) properties = await Property.find({'agent._id': req.query.agent}).sort('title').exec();
+        else properties = await Property.find({}).sort('title').exec();
     } catch(err){
         return res.status(500).json({message: 'There was an error processing your request.'});
     }
@@ -39,6 +38,7 @@ const createProperty = async (req, res) => {
 
     try{
         const property = await Property.create({
+            title: req.body.title,
             address: {
                 houseNumber: req.body.houseNumber,
                 street: req.body.street,
@@ -67,6 +67,7 @@ const updateProperty = async (req, res) => {
     let property;
     try{
         property = await Property.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
             address: {
                 houseNumber: req.body.houseNumber,
                 street: req.body.street,

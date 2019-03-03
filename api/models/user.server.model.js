@@ -53,6 +53,7 @@ UserSchema.methods.signToken = function(){
 
 UserSchema.statics.validateInput = function(userInput){
     const input = {
+        _id: Joi.objectId(),
         name: Joi.string().required(),
         email: Joi.string().email().min(5).max(255).required(),
         phone: Joi.string().min(5).max(50).required(),
