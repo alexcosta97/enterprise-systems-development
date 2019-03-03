@@ -72,7 +72,9 @@ export class LoginService {
    * Checks if the user is logged in
    */
   isLoggedIn(): boolean {
-    return !this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
+    if(token === null) return false;
+    else return true;
   }
 
   /**

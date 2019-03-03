@@ -1,0 +1,27 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.form-container > * {
+    width: 100%;
+}
+
+.signup-container > * {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+}
+
+p {
+    text-align: center;
+}

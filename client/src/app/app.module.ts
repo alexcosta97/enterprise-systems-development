@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -29,7 +30,6 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
-  MatFormField,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -52,7 +52,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
 import { LoginService } from './services/login.service';
 import { UsersService } from './user/users.service';
@@ -80,9 +80,6 @@ import { PicturesService } from './show-room/pictures.service';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
         whitelistedDomains: ['https://three-sixty-rooms-bnu.herokuapp.com/'],
         headerName: 'x-auth-token',
         authScheme: ''
@@ -104,7 +101,6 @@ import { PicturesService } from './show-room/pictures.service';
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
-    MatFormField,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
@@ -126,7 +122,9 @@ import { PicturesService } from './show-room/pictures.service';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     LoginService,
