@@ -61,6 +61,10 @@ import { FloorsService } from './floors/floors.service';
 import { RoomsService } from './rooms/rooms.service';
 import { PicturesService } from './show-room/pictures.service';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +84,7 @@ import { PicturesService } from './show-room/pictures.service';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
+        tokenGetter: tokenGetter,
         whitelistedDomains: ['https://three-sixty-rooms-bnu.herokuapp.com/'],
         headerName: 'x-auth-token',
         authScheme: ''
