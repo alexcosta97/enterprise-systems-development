@@ -1,82 +1,79 @@
 # Enterprise Systems Develoment
 
-## Setting up the development environment
-In order to set up the development environment, you need to set the variable in the Operating System prior to running the application.
+## API Usage
 
-You have two options to set the environment: either `development` or `production`.
+### Sign-Up and login
 
-For Windows-based systems, you need to use the following command:
-`set NODE_ENV=development`
+Connect to the [API](https://three-sixty-rooms-bnu.herokuapp.com/)
 
-For Unix-based systems, you need to use the following command:
-`export NODE_ENV=development`
+1. `/api/auth/login`:
+    * Provide email and password
+    * Response is a JSON Web Token used to authenticate further requests
 
-## Running the application
-In order to run the application, you need to start the application with the following command:
-`node server`
+2. `/api/auth/signup`:
+    * Provide name, email, phone and password
+    * Response is a JSON Web Token used to authenticate further requests
 
-The server then starts the service and Express awaits requests being sent to it.
-The express server listens to port 3000.
+### Place requests to server
 
-In order to connect to the server, you can use following URL: `http://localhost:3000/`.
+Any requests other than GET require for a token to be sent in order to authenticate the user and make sure the user is only trying to modify resources that belong to them.
 
-## Adding Controllers
-To add controllers, you export the method that deals with the request sent to the server and set up the code to deal with the request and set the response.
+The Token is sent to the server by using the header `x-auth-token` along with the JSON Web Token received from the server when loging in the user.
 
-See Express documentation for the different methods to deal with requests and prepare the response.
+### Access Server Resources
 
-Example:
-```javascript
-exports.render = function(req, res){
-    res.send('Answer');
-}
-```
+1. Users:
+    * Get User: `/api/users/$USERID`: shows the details of a user minus their password
+    * Update User: PUT `/api/users/` with authentication token: Updates the details of the user. The values that can be given to the server are:
+        * name
+        * email
+        * password
+        * phone
+    * Delete User: DELETE `/api/users/` with authentication token: Deletes the user with the given authentication token
 
-## Adding Routes
-To add routes, you need to export the module that sets the routes for the controller. When initializing the routes module, you require the controller so that you can access its methods more easily. Example:
-```javascript
-module.exports = function(app){
-    var contollerName = require('pathToController');
-    //Here set the request type that you're setting the route for and the controller method that is assigned to it
-    app.route('/').get(controllerName.method);
-}
-```
+2. Properties:
+    * Get properties: GET `/api/properties/`
+    * Get Details for a single property: GET `/api/properties/$PROPERTYID`
+    * Create Property: POST `/api/properties/` with auth token and with the folllowing values:
+        * title: string, required
+        * houseNumber: string, required
+        * street: string, required
+        * town: string, required
+        * postCode: string, required
+        * county: string
+        * country: string
+        * description: string
+        * picture: Image file, sent as part of a multi-part form
+    * Update a Property: PUT `/api/properties/$PROPERTYID` with the same values as to create a property
+    * Delete a Property: DELETE `/api/properties/$PROPERTYID` using a authentication token
 
-## Creating Mongoose Schemas and Models
-Schemas and models go inside the `app/models` folder.
+3. Floors:
+    * Get floors: GET `/api/floors/` with optional query parameter `?property=$PROPERTYID`
+    * Get Details for a single floor: GET `/api/floors/$FLOORID`
+    * Create Floor: POST `/api/floors/` with auth token and with the folllowing values:
+        * property: string, required -> The ID of the property the floor belongs to
+        * level: string, required -> The name of the floor, or level
+        * picture: Image file, sent as part of a multi-part form
+    * Update a Floor: PUT `/api/floors/$FLOORID` with the same values as to create a floor
+    * Delete a Floor: DELETE `/api/floors/$FLOORID` using a authentication token
 
-To create a model for the database, you first need to set a schema with Mongoose. Here's an example of a schema for a user database:
-```javascript
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+4. Rooms:
+    * Get Rooms: GET `/api/rooms/` with optional query parameter `?floor=$FLOORID`
+    * Get Details for a single room: GET `/api/rooms/$ROOMID`
+    * Create Room: POST `/api/rooms/` with auth token and with the folllowing values:
+        * floor: string, required -> The ID of the floor the room belongs to
+        * name: string, required -> The name of the room
+        * pixelsXMin: number, required: -> the min x where the room is situated inside the pixel dimensions of the floor plan
+        * pixelsXMax: number, required: -> the max x where the room is situated inside the pixel dimensions of the floor plan
+        * pixelsY: number, required: -> the y where the room is situated inside the pixel dimensions of the floor plan
+    * Update a Room: PUT `/api/rooms/$ROOMID` with the same values as to create a room
+    * Delete a Room: DELETE `/api/rooms/$ROOMID` using a authentication token
 
-var UserSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    username: String,
-    password: String
-});
-```
-
-When setting up a schema, we initialize a Schema object and assign to it the name of the variables contained in the model and the data type. For more data types and information about schemas, see the Mongoose documentation.
-
-After the schema is set, we need to create a model using the schema that has just been created using the `model` method from Mongoose:
-```javascript
-mongoose.model('User', UserSchema);
-```
-In this method, we set the name for the model and assign a schema to it. When requesting the model, we have to use the model method again, this time only using the name of the model we want to use as an argument.
-
-Before being able to use the model, we first need to add the model file to mongoose, so that the model is loaded for the other modules of the application as well.
-```javascript
-module.exports = function(){
-    var db = mongoose.connect(config.db, {useNewUrlParser:true});
-    require('../app/models/modelFileName');
-    return db;
-}
-```
-
-After the model has been loaded into Mongoose, we can use it for controllers by requiring it with the Mongoose `model` method, as in the following example:
-```javascript
-var User = require('mongoose').model('User');
-```
+5. 360 Pictures:
+    * Get pictures: GET `/api/pictures/` with optional query parameter `?room=$ROOMID`
+    * Get Details for a single picture: GET `/api/pictures/$PICTUREID`
+    * Create Picture: POST `/api/pictures/` with auth token and with the folllowing values:
+        * room: string, required -> The ID of the room the picture belongs to
+        * picture: Image file, sent as part of a multi-part form
+    * Update a Picture: PUT `/api/pictures/$PICTUREID` with the same values as to create a picture
+    * Delete a Picture: DELETE `/api/pictures/$PICTUREID` using a authentication token
